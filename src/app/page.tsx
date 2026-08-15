@@ -9,6 +9,7 @@ export default function Home() {
 				alt="Scrolla"
 				fill
 				priority
+				sizes="420px"
 				className="object-cover"
 			/>
 			<div className="relative flex flex-1 flex-col justify-between px-8 py-20">
