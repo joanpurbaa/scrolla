@@ -146,8 +146,8 @@ export default function PersonifikasiDuaPage() {
 					onClick={handleNext}
 					className={`flex h-12 w-full items-center justify-center gap-2 rounded-full text-base font-semibold transition-colors ${
 						selectedOption !== null
-							? "bg-primary text-white"
-							: "bg-zinc-200 text-zinc-400"
+							? "bg-primary text-white cursor-pointer"
+							: "bg-zinc-200 text-zinc-400 cursor-not-allowed"
 					}`}>
 					Lanjut
 					<ArrowRight className="h-5 w-5" />
