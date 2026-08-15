@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const topics = [
@@ -52,14 +53,16 @@ export default function PersonifikasiSatuPage() {
 				})}
 			</div>
 			<div className="mt-auto pt-8">
-				<button
-					type="button"
-					disabled={!selected}
+				<Link
+					href={selected ? "/personifikasi-2" : "#"}
+					aria-disabled={!selected}
 					className={`flex h-12 w-full items-center justify-center rounded-full text-base font-semibold transition-colors ${
-						selected ? "bg-primary text-white" : "bg-zinc-200 text-zinc-400"
+						selected
+							? "bg-primary text-white"
+							: "pointer-events-none bg-zinc-200 text-zinc-400"
 					}`}>
 					Lanjut
-				</button>
+				</Link>
 			</div>
 		</div>
 	);

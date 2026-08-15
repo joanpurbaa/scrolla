@@ -20,7 +20,7 @@ export default function Home() {
 				<div className="flex flex-col gap-4">
 					<Link
 						href="/masuk"
-						className="flex h-14 items-center justify-center rounded-full bg-secondary text-base font-semibold text-white">
+						className="flex h-14 items-center justify-center rounded-full bg-secondary text-base font-semibold text-white shadow-2xl">
 						Masuk
 					</Link>
 					<p className="text-center text-sm text-white/90">
