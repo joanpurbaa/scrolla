@@ -7,7 +7,7 @@ export default function BottomNav({
 	active: "beranda" | "profil";
 }) {
 	return (
-		<div className="absolute inset-x-0 bottom-0 z-30 flex items-center justify-around bg-black px-2 pb-4 pt-2">
+		<div className="absolute inset-x-0 bottom-0 z-30 flex items-center justify-around bg-black px-2 pb-3 pt-4">
 			<Link
 				href="/beranda"
 				className={`flex flex-col items-center gap-1 text-xs ${

@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Heart } from "lucide-react";
 import BottomNav from "@/components/bottom-nav";
+import CommentSheet from "@/components/comment-sheet";
 
 const feedItems = [
 	{
@@ -37,6 +38,7 @@ const feedItems = [
 
 export default function BerandaPage() {
 	const [likedIds, setLikedIds] = useState<string[]>([]);
+	const [openCommentsId, setOpenCommentsId] = useState<string | null>(null);
 
 	const toggleLike = (id: string) => {
 		setLikedIds((prev) =>
@@ -46,6 +48,15 @@ export default function BerandaPage() {
 
 	return (
 		<div className="relative flex flex-1 flex-col overflow-hidden bg-black">
+			<svg width="0" height="0" className="absolute">
+				<defs>
+					<linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+						<stop offset="0%" stopColor="#ef4444" />
+						<stop offset="100%" stopColor="#ec4899" />
+					</linearGradient>
+				</defs>
+			</svg>
+
 			<div className="h-full snap-y snap-mandatory overflow-y-scroll [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 				{feedItems.map((item) => {
 					const isLiked = likedIds.includes(item.id);
@@ -81,16 +92,17 @@ export default function BerandaPage() {
 									type="button"
 									onClick={() => toggleLike(item.id)}
 									className="flex flex-col items-center gap-1">
-									<Image
-										src="/like.svg"
-										alt="Suka"
-										width={32}
-										height={32}
-										className={isLiked ? "" : "opacity-90"}
+									<Heart
+										className="h-8 w-8"
+										fill={isLiked ? "url(#heartGradient)" : "white"}
+										stroke={isLiked ? "url(#heartGradient)" : "white"}
 									/>
 									<span className="text-xs font-semibold text-white">{item.likes}</span>
 								</button>
-								<button type="button" className="flex flex-col items-center gap-1">
+								<button
+									type="button"
+									onClick={() => setOpenCommentsId(item.id)}
+									className="flex flex-col items-center gap-1">
 									<Image src="/comment.svg" alt="Komentar" width={32} height={32} />
 									<span className="text-xs font-semibold text-white">
 										{item.comments}
@@ -115,6 +127,12 @@ export default function BerandaPage() {
 									<span className="truncate text-xs">{item.sound}</span>
 								</div>
 							</div>
+
+							<CommentSheet
+								open={openCommentsId === item.id}
+								onClose={() => setOpenCommentsId(null)}
+								totalComments={item.comments}
+							/>
 						</div>
 					);
 				})}
